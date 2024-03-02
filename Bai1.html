@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1</title>
+    <style>
+        .num {
+            display: flex;
+            align-items: center;
+        }
+        .num label {
+            margin-right: 20px;
+        }
+        .num input {
+            width: 150px;
+            height: 20px;
+        }
+        .num1 {
+            margin-bottom: 10px;
+        }
+        button {
+            margin-top: 10px;
+        }
+        #result1 {
+            margin: 20px 0 20px 0;
+        }
+       
+    </style>
+</head>
+<body>
+    <h1>Nhập hai số a và b (a < b):</h1>
+    <div id="combo">
+        <div class="num num1">
+            <label>Số a là:</label>
+            <input  type="number" id="start">
+        </div>
+        <div class="num num2">
+            <label>Số b là:</label>
+            <input  type="number" id="end">
+        </div>
+    </div> 
+    <button onclick="findAndSum()">Tính tổng số nguyên tố</button>
+    <div id="result1"></div>
+    <div id="result2"></div>
+   
+
+    <script>
+        function primeNum(num) {
+            if (num < 1) return false;
+                for (let i = 2; i <= Math.sqrt(num); i++) {
+                    if (num % i === 0) return false;
+                }
+                return true;
+        }
+        function findAndSum() {
+            const a = parseInt(document.getElementById('start').value);
+            const b = parseInt(document.getElementById('end').value);
+                if (a <= 1 || b <= 1) {
+                    alert("Vui lòng nhập số hợp lệ (lớn hơn hoặc bằng 1).");
+                    return;
+                }
+
+            let number = [];
+            let sum = 0;
+                for (let i = a ; i <= b ; i++) {
+                    if (primeNum(i)) {
+                        number.push(i);
+                        sum += i;
+                    }         
+                } 
+            document.getElementById('result1').innerText = "Các số nguyên tố trong khoảng " + a + " đến "  + b + " là: " + number.join(", ");
+            document.getElementById('result2').innerText = "Tổng các số nguyên tố là " + sum;
+        }
+         
+    
+    </script>
+</body>
+</html>
